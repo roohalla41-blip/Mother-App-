@@ -1,0 +1,143 @@
+{
+  "exportedAt": "2026-11-04T04:05:31.964Z",
+  "coreStructure": {
+    "label": "هسته برنامه مادر",
+    "note": "شش لایه از نمایش تا ذخیره‌سازی",
+    "children": [
+      {
+        "label": "۱. لایه نمایش (React + Vite)",
+        "children": [
+          {
+            "label": "App.jsx",
+            "note": "مسیریابی، AuthProvider، محافظت از مسیرها"
+          },
+          {
+            "label": "Layout",
+            "note": "هدر، فوتر و بنر اعلان‌های مهم"
+          },
+          {
+            "label": "صفحات عمومی",
+            "note": "خانه، برنامه‌ها، جزئیات، دانلود، آموزش، خبر، اعلان، سازندگان، درباره، پشتیبانی، حریم خصوصی، شرایط"
+          },
+          {
+            "label": "پنل سازنده",
+            "note": "BuilderPanel به همراه زیربخش‌های مدیریتی"
+          },
+          {
+            "label": "کتابخانه کامپوننت",
+            "note": "کارت‌ها، بج‌ها، فرم‌ها، دیالوگ‌ها، جستجو، اشتراک‌گذاری"
+          }
+        ]
+      },
+      {
+        "label": "۲. لایه داده کلاینت",
+        "children": [
+          {
+            "label": "React Query",
+            "note": "کش مشترک با اعتبار ۱۰ دقیقه برای کاهش مصرف اعتبار"
+          },
+          {
+            "label": "useApps / useReleases",
+            "note": "برنامه‌ها و نسخه‌های دانلود"
+          },
+          {
+            "label": "useBuilders / useCategories",
+            "note": "سازندگان و دسته‌بندی‌ها"
+          },
+          {
+            "label": "useTutorials / useNews / useAnnouncements",
+            "note": "محتوای سایت"
+          },
+          {
+            "label": "useComments / useSupportMessages",
+            "note": "نظرات و پیام‌های پشتیبانی"
+          },
+          {
+            "label": "useStorage",
+            "note": "آپلود، حذف و لینک امضاشده فایل"
+          },
+          {
+            "label": "useSupabaseStatus",
+            "note": "سلامت و مصرف منابع"
+          }
+        ]
+      },
+      {
+        "label": "۳. لایه سرور (Base44 Functions)",
+        "children": [
+          {
+            "label": "supabaseCrud",
+            "note": "دروازه واحد CRUD، اعتبارسنجی دسترسی، مالکیت سازنده، پاک‌سازی آبشاری"
+          },
+          {
+            "label": "supabaseStorage",
+            "note": "آپلود و حذف فایل و ساخت لینک امضاشده"
+          },
+          {
+            "label": "supabaseStatus",
+            "note": "محاسبه مصرف دیتابیس و فضای ذخیره‌سازی"
+          },
+          {
+            "label": "supabaseKeepAlive",
+            "note": "اجرای زمان‌بندی‌شده هر ۶ روز برای جلوگیری از خواب پروژه"
+          },
+          {
+            "label": "supabaseSetupDatabase",
+            "note": "ساخت جداول، انواع داده و سیاست‌ها"
+          },
+          {
+            "label": "supabaseTestConnection / supabaseTestCRUD",
+            "note": "تست اتصال و عملیات"
+          },
+          {
+            "label": "generateSitemap",
+            "note": "تولید نقشه سایت"
+          }
+        ]
+      },
+      {
+        "label": "۴. ماژول اشتراکی",
+        "children": [
+          {
+            "label": "supabaseFieldMap.ts",
+            "note": "نگاشت camelCase ↔ snake_case، ستون‌های مجاز و فیلتر خواندن عمومی"
+          }
+        ]
+      },
+      {
+        "label": "۵. امنیت و دسترسی",
+        "children": [
+          {
+            "label": "AuthContext + ProtectedRoute",
+            "note": "ورود، نشست و محافظت از مسیر"
+          },
+          {
+            "label": "builderAuth",
+            "note": "کد دسترسی مخفی سازنده"
+          },
+          {
+            "label": "inAppBrowser",
+            "note": "تشخیص مرورگر داخلی و هدایت به مرورگر خارجی"
+          },
+          {
+            "label": "Supabase RLS",
+            "note": "خواندن عمومی فقط برای محتوای منتشرشده"
+          }
+        ]
+      },
+      {
+        "label": "۶. داده و ذخیره‌سازی",
+        "children": [
+          {
+            "label": "Supabase Postgres",
+            "note": "11 جدول اصلی"
+          },
+          {
+            "label": "Supabase Storage",
+            "note": "فایل‌های APK و تصاویر — bucket: madar-files"
+          }
+        ]
+      }
+    ]
+  }
+}

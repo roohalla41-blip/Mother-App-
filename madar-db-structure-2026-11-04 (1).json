@@ -1,0 +1,758 @@
+{
+  "exportedAt": "2026-11-04T04:05:36.053Z",
+  "tables": [
+    {
+      "name": "builders",
+      "label": "سازندگان",
+      "purpose": "پروفایل عمومی سازنده و مالکیت برنامه‌ها",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "display_name",
+          "TEXT · نام نمایشی"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "logo",
+          "TEXT"
+        ],
+        [
+          "short_bio",
+          "TEXT"
+        ],
+        [
+          "full_bio",
+          "TEXT"
+        ],
+        [
+          "website_url",
+          "TEXT"
+        ],
+        [
+          "is_public",
+          "BOOLEAN · پیش‌فرض true"
+        ],
+        [
+          "app_slugs",
+          "TEXT[]"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "user_id",
+          "UUID · مالک حساب"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "apps.builder_id → builders.id"
+      ]
+    },
+    {
+      "name": "categories",
+      "label": "دسته‌بندی‌ها",
+      "purpose": "گروه‌بندی برنامه‌ها در فهرست و فیلترها",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "name",
+          "TEXT"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "icon",
+          "TEXT"
+        ],
+        [
+          "is_active",
+          "BOOLEAN · پیش‌فرض true"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "apps.category → categories.slug"
+      ]
+    },
+    {
+      "name": "apps",
+      "label": "برنامه‌ها",
+      "purpose": "جدول مرکزی محصولات: مشخصات، توضیحات، دسته، وضعیت و تصاویر",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "name",
+          "TEXT"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "short_name",
+          "TEXT"
+        ],
+        [
+          "tagline",
+          "TEXT"
+        ],
+        [
+          "description",
+          "TEXT"
+        ],
+        [
+          "full_description",
+          "TEXT"
+        ],
+        [
+          "category",
+          "TEXT"
+        ],
+        [
+          "price",
+          "app_price · free | paid"
+        ],
+        [
+          "price_label",
+          "TEXT"
+        ],
+        [
+          "version",
+          "TEXT"
+        ],
+        [
+          "release_date",
+          "TEXT"
+        ],
+        [
+          "last_update",
+          "TEXT"
+        ],
+        [
+          "downloads",
+          "TEXT"
+        ],
+        [
+          "show_download_count",
+          "BOOLEAN"
+        ],
+        [
+          "rating",
+          "NUMERIC(2,1)"
+        ],
+        [
+          "review_count",
+          "INTEGER"
+        ],
+        [
+          "icon",
+          "TEXT"
+        ],
+        [
+          "gradient",
+          "TEXT"
+        ],
+        [
+          "status",
+          "app_status · published | updating | coming_soon | inactive"
+        ],
+        [
+          "is_new",
+          "BOOLEAN"
+        ],
+        [
+          "is_popular",
+          "BOOLEAN"
+        ],
+        [
+          "is_suggested",
+          "BOOLEAN"
+        ],
+        [
+          "features",
+          "TEXT[]"
+        ],
+        [
+          "use_cases",
+          "TEXT[]"
+        ],
+        [
+          "website_url",
+          "TEXT"
+        ],
+        [
+          "web_app_url",
+          "TEXT"
+        ],
+        [
+          "video_url",
+          "TEXT"
+        ],
+        [
+          "cover_image",
+          "TEXT"
+        ],
+        [
+          "download_url",
+          "TEXT"
+        ],
+        [
+          "gallery",
+          "TEXT[]"
+        ],
+        [
+          "related_slugs",
+          "TEXT[]"
+        ],
+        [
+          "show_on_homepage",
+          "BOOLEAN"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "builder_id",
+          "UUID · کلید خارجی"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "builder_id → builders.id (SET NULL)",
+        "releases.app_id → apps.id"
+      ]
+    },
+    {
+      "name": "releases",
+      "label": "نسخه‌های دانلود",
+      "purpose": "فایل‌های APK، نسخه وب، ویندوز و نسخه‌های قدیمی هر برنامه",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "app_id",
+          "UUID · کلید خارجی"
+        ],
+        [
+          "type",
+          "release_type · android_apk | web | windows | ..."
+        ],
+        [
+          "label",
+          "TEXT"
+        ],
+        [
+          "version",
+          "TEXT"
+        ],
+        [
+          "size",
+          "TEXT"
+        ],
+        [
+          "file_name",
+          "TEXT"
+        ],
+        [
+          "download_url",
+          "TEXT"
+        ],
+        [
+          "release_date",
+          "TEXT"
+        ],
+        [
+          "status",
+          "release_status · active | inactive | outdated | updating"
+        ],
+        [
+          "is_latest",
+          "BOOLEAN"
+        ],
+        [
+          "compatibility",
+          "TEXT"
+        ],
+        [
+          "note",
+          "TEXT"
+        ],
+        [
+          "download_count",
+          "INTEGER"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "app_id → apps.id (CASCADE)"
+      ]
+    },
+    {
+      "name": "tutorials",
+      "label": "آموزش‌ها",
+      "purpose": "محتوای آموزشی متنی و ویدیویی مرتبط با برنامه‌ها",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "title",
+          "TEXT"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "excerpt",
+          "TEXT"
+        ],
+        [
+          "body",
+          "TEXT"
+        ],
+        [
+          "cover_image",
+          "TEXT"
+        ],
+        [
+          "video_url",
+          "TEXT"
+        ],
+        [
+          "category",
+          "TEXT"
+        ],
+        [
+          "author",
+          "TEXT"
+        ],
+        [
+          "app_slug",
+          "TEXT"
+        ],
+        [
+          "duration",
+          "TEXT"
+        ],
+        [
+          "status",
+          "content_status · draft | published | updating | inactive"
+        ],
+        [
+          "publish_date",
+          "TEXT"
+        ],
+        [
+          "last_update",
+          "TEXT"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "show_on_homepage",
+          "BOOLEAN"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "comments.tutorial_id → tutorials.id"
+      ]
+    },
+    {
+      "name": "news",
+      "label": "اخبار",
+      "purpose": "اخبار محصولات و بروزرسانی‌ها",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "title",
+          "TEXT"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "excerpt",
+          "TEXT"
+        ],
+        [
+          "body",
+          "TEXT"
+        ],
+        [
+          "cover_image",
+          "TEXT"
+        ],
+        [
+          "category",
+          "TEXT"
+        ],
+        [
+          "author",
+          "TEXT"
+        ],
+        [
+          "app_slug",
+          "TEXT"
+        ],
+        [
+          "related_version",
+          "TEXT"
+        ],
+        [
+          "status",
+          "content_status"
+        ],
+        [
+          "publish_date",
+          "TEXT"
+        ],
+        [
+          "last_update",
+          "TEXT"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "show_on_homepage",
+          "BOOLEAN"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "comments.news_id → news.id"
+      ]
+    },
+    {
+      "name": "announcements",
+      "label": "اعلان‌ها",
+      "purpose": "اطلاع‌رسانی سایت و برنامه‌ها، همراه با اعلان‌های مهم",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "title",
+          "TEXT"
+        ],
+        [
+          "slug",
+          "TEXT · یکتا"
+        ],
+        [
+          "body",
+          "TEXT"
+        ],
+        [
+          "excerpt",
+          "TEXT"
+        ],
+        [
+          "image",
+          "TEXT"
+        ],
+        [
+          "type",
+          "announcement_type · notice | update | news | maintenance"
+        ],
+        [
+          "scope",
+          "announcement_scope · site | app"
+        ],
+        [
+          "app_slug",
+          "TEXT"
+        ],
+        [
+          "status",
+          "announcement_status · draft | published | inactive"
+        ],
+        [
+          "is_important",
+          "BOOLEAN"
+        ],
+        [
+          "publish_date",
+          "TEXT"
+        ],
+        [
+          "display_order",
+          "NUMERIC"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": []
+    },
+    {
+      "name": "comments",
+      "label": "نظرات کاربران",
+      "purpose": "امتیاز و نظر عمومی برای برنامه، آموزش و خبر",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "app_id",
+          "UUID · کلید خارجی"
+        ],
+        [
+          "tutorial_id",
+          "UUID · کلید خارجی"
+        ],
+        [
+          "news_id",
+          "UUID · کلید خارجی"
+        ],
+        [
+          "author_name",
+          "TEXT"
+        ],
+        [
+          "author_email",
+          "TEXT"
+        ],
+        [
+          "rating",
+          "INTEGER · ۱ تا ۵"
+        ],
+        [
+          "body",
+          "TEXT"
+        ],
+        [
+          "status",
+          "comment_status · pending | approved | rejected"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": [
+        "app_id → apps.id",
+        "tutorial_id → tutorials.id",
+        "news_id → news.id"
+      ]
+    },
+    {
+      "name": "support_messages",
+      "label": "پیام‌های پشتیبانی",
+      "purpose": "پیام‌های ارسالی کاربران و پاسخ سازنده",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "name",
+          "TEXT"
+        ],
+        [
+          "email",
+          "TEXT"
+        ],
+        [
+          "subject",
+          "TEXT"
+        ],
+        [
+          "body",
+          "TEXT"
+        ],
+        [
+          "app_slug",
+          "TEXT"
+        ],
+        [
+          "status",
+          "support_status · open | in_progress | resolved | closed"
+        ],
+        [
+          "priority",
+          "support_priority · low | medium | high"
+        ],
+        [
+          "reply",
+          "TEXT"
+        ],
+        [
+          "replied_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": []
+    },
+    {
+      "name": "settings",
+      "label": "تنظیمات سایت",
+      "purpose": "کلید/مقدار تنظیمات عمومی و داخلی",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "key",
+          "TEXT · یکتا"
+        ],
+        [
+          "value",
+          "TEXT"
+        ],
+        [
+          "category",
+          "TEXT"
+        ],
+        [
+          "description",
+          "TEXT"
+        ],
+        [
+          "is_public",
+          "BOOLEAN"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": []
+    },
+    {
+      "name": "system_keep_alive",
+      "label": "فعال‌نگه‌داشتن سیستم",
+      "purpose": "ثبت روزانه فعالیت برای جلوگیری از غیرفعال شدن پروژه",
+      "columns": [
+        [
+          "id",
+          "UUID · کلید اصلی"
+        ],
+        [
+          "type",
+          "TEXT"
+        ],
+        [
+          "date",
+          "TEXT · یکتا"
+        ],
+        [
+          "last_activity",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "status",
+          "keepalive_status · active | needs_review"
+        ],
+        [
+          "created_at",
+          "TIMESTAMPTZ"
+        ],
+        [
+          "updated_at",
+          "TIMESTAMPTZ"
+        ]
+      ],
+      "relations": []
+    }
+  ]
+}

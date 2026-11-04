@@ -1,0 +1,165 @@
+{
+  "exportedAt": "2026-11-04T04:05:28.749Z",
+  "appMap": {
+    "label": "مادر",
+    "note": "مرکز معرفی، انتشار و دانلود محصولات نرم‌افزاری",
+    "children": [
+      {
+        "label": "سایت عمومی (بدون نیاز به ورود)",
+        "children": [
+          {
+            "label": "صفحه اصلی",
+            "path": "/"
+          },
+          {
+            "label": "فهرست برنامه‌ها",
+            "path": "/apps",
+            "children": [
+              {
+                "label": "جزئیات برنامه",
+                "path": "/apps/:slug",
+                "children": [
+                  {
+                    "label": "صفحه دانلود و نسخه‌ها",
+                    "path": "/apps/:slug/download"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "سازندگان",
+            "path": "/builders",
+            "children": [
+              {
+                "label": "پروفایل عمومی سازنده",
+                "path": "/builders/:slug"
+              }
+            ]
+          },
+          {
+            "label": "اعلان‌ها",
+            "path": "/announcements",
+            "children": [
+              {
+                "label": "جزئیات اعلان",
+                "path": "/announcements/:slug"
+              }
+            ]
+          },
+          {
+            "label": "آموزش‌ها",
+            "path": "/tutorials",
+            "children": [
+              {
+                "label": "جزئیات آموزش",
+                "path": "/tutorials/:slug"
+              }
+            ]
+          },
+          {
+            "label": "اخبار",
+            "path": "/news",
+            "children": [
+              {
+                "label": "جزئیات خبر",
+                "path": "/news/:slug"
+              }
+            ]
+          },
+          {
+            "label": "درباره ما",
+            "path": "/about"
+          },
+          {
+            "label": "پشتیبانی",
+            "path": "/support"
+          },
+          {
+            "label": "حریم خصوصی",
+            "path": "/privacy"
+          },
+          {
+            "label": "شرایط استفاده",
+            "path": "/terms"
+          }
+        ]
+      },
+      {
+        "label": "احراز هویت و دسترسی",
+        "children": [
+          {
+            "label": "ورود کاربر",
+            "path": "/login"
+          },
+          {
+            "label": "ثبت‌نام",
+            "path": "/register"
+          },
+          {
+            "label": "فراموشی رمز عبور",
+            "path": "/forgot-password"
+          },
+          {
+            "label": "بازنشانی رمز عبور",
+            "path": "/reset-password"
+          },
+          {
+            "label": "ورود سازنده",
+            "path": "/builder-login",
+            "note": "با کد دسترسی مخفی"
+          },
+          {
+            "label": "پنل سازنده",
+            "path": "/builder-panel",
+            "note": "مسیر محافظت‌شده"
+          }
+        ]
+      },
+      {
+        "label": "پنل مدیریتی",
+        "path": "/builder-panel",
+        "note": "۱۲ بخش مدیریتی",
+        "children": [
+          {
+            "label": "داشبورد"
+          },
+          {
+            "label": "مدیریت برنامه‌ها"
+          },
+          {
+            "label": "پروفایل سازنده"
+          },
+          {
+            "label": "مدیریت دسته‌بندی‌ها"
+          },
+          {
+            "label": "اعلان‌ها و اطلاع‌رسانی"
+          },
+          {
+            "label": "مدیریت آموزش‌ها"
+          },
+          {
+            "label": "مدیریت اخبار"
+          },
+          {
+            "label": "مدیریت نظرات"
+          },
+          {
+            "label": "مدیریت پشتیبانی"
+          },
+          {
+            "label": "تنظیمات سایت"
+          },
+          {
+            "label": "وضعیت و مصرف Supabase"
+          },
+          {
+            "label": "ساختار و نقشه برنامه",
+            "note": "همین بخش"
+          }
+        ]
+      }
+    ]
+  }
+}
