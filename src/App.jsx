@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, NavLink, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ArrowUpRight, BookOpen, Boxes, CheckCircle2, Download,
   FileText, LayoutDashboard, LogIn, LogOut, Menu, MessageCircle,
@@ -90,7 +90,7 @@ function Stat({label,value}){return <div className="stat-card"><small>{label}</s
 export default function App() {
   const [session,setSession]=useState(null); const [apps,setApps]=useState(demoApps); const [tutorials,setTutorials]=useState([]); const [news,setNews]=useState([]); const [announcements,setAnnouncements]=useState([]);
   const [loading,setLoading]=useState(isSupabaseConfigured); const navigate=useNavigate();
-  async function refreshApps(){if(!supabase)return;try{setApps(await loadPublishedApps());}catch(e){console.error("Loading apps failed",e);}}
+  async function refreshApps(){if(!supabase)return;try{const {data,error}=await supabase.from("apps").select("*").order("display_order",{ascending:true});if(error)throw error;setApps(data ?? []);}catch(e){console.error("Loading apps failed",e);}}
   useEffect(()=>{
     if(!supabase){setLoading(false);return;}
     supabase.auth.getSession().then(({data})=>setSession(data.session));
