@@ -57,13 +57,10 @@ function AppsPage({apps}) {
 function PageTitle({eyebrow,title,subtitle}) { return <div className="page-title"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{subtitle}</p></div>; }
 
 function AppDetail({apps}) {
-  const {slug} = useParamsCompat(); const app = apps.find(a=>a.slug===slug);
+  const {slug} = useParams(); const app = apps.find(a=>a.slug===slug);
   if (!app) return <main className="container page"><Empty message="این برنامه پیدا نشد یا هنوز منتشر نشده است."/></main>;
   return <main className="container page"><Link to="/apps" className="back-link">← بازگشت به برنامه‌ها</Link><div className="detail-card"><div className="app-icon detail-icon">{app.icon || "📦"}</div><span className="eyebrow">{app.category || "نرم‌افزار"}</span><h1>{app.name}</h1><h3>{app.tagline}</h3><p>{app.description || app.full_description || "توضیحات تکمیلی این برنامه به‌زودی منتشر می‌شود."}</p><div className="detail-meta"><span>نسخه: {app.version || "—"}</span><span>وضعیت: {app.status === "published" ? "منتشرشده" : "در حال آماده‌سازی"}</span><span>{app.price === "paid" ? (app.price_label || "پولی") : "رایگان"}</span></div>{app.status === "published" && <Link className="btn btn-primary" to={`/apps/${app.slug}/download`}>صفحه دریافت نسخه‌ها <Download size={17}/></Link>}</div></main>;
 }
-function useParamsCompat(){ return requireParams(); }
-function requireParams(){ return window.__motherHubParams || {}; }
-
 function DownloadPage({apps}) {
   const slug = window.location.pathname.split("/")[2]; const app = apps.find(a=>a.slug===slug);
   return <main className="container page"><PageTitle eyebrow="دریافت محصول" title={app ? `دریافت ${app.name}` : "صفحه دریافت نسخه‌ها"} subtitle="فقط نسخه‌هایی که سازنده منتشر کرده است در این بخش نمایش داده می‌شود."/><div className="notice"><ShieldCheck/> لینک دانلود زمانی نمایش داده می‌شود که نسخه فعال در پنل سازنده ثبت شده باشد.</div>{app?.download_url && <a className="btn btn-primary" href={app.download_url} target="_blank" rel="noreferrer">دریافت فایل <Download size={17}/></a>}</main>;
