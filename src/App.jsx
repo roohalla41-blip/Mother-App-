@@ -90,8 +90,20 @@ export default function App() {
   async function refreshApps(){if(!supabase)return;try{const {data,error}=await supabase.from("apps").select("*").order("display_order",{ascending:true});if(error)throw error;setApps(data ?? []);}catch(e){console.error("Loading apps failed",e);}}
   useEffect(()=>{
     if(!supabase){setLoading(false);return;}
-    supabase.auth.getSession().then(({data})=>setSession(data.session));
-    const {data:{subscription}}=supabase.auth.onAuthStateChange((_event,s)=>setSession(s));
+    supabase.auth.getSession().then(async ({data})=>{
+      setSession(data.session);
+      if(data.session?.user?.app_metadata?.role==="builder" || data.session?.user?.app_metadata?.role==="admin"){
+        const {data:all,error}=await supabase.from("apps").select("*").order("display_order",{ascending:true});
+        if(!error)setApps(all ?? []);
+      }
+    });
+    const {data:{subscription}}=supabase.auth.onAuthStateChange(async (_event,s)=>{
+      setSession(s);
+      if(s?.user?.app_metadata?.role==="builder" || s?.user?.app_metadata?.role==="admin"){
+        const {data:all,error}=await supabase.from("apps").select("*").order("display_order",{ascending:true});
+        if(!error)setApps(all ?? []);
+      }
+    });
     Promise.all([loadPublishedApps(),loadPublicContent("tutorials"),loadPublicContent("news"),loadPublicContent("announcements")])
       .then(([a,t,n,an])=>{setApps(a);setTutorials(t);setNews(n);setAnnouncements(an);})
       .catch(e=>console.error("Public content load failed",e))
