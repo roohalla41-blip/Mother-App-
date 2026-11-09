@@ -1,7 +1,7 @@
 name: Publish Mother preview
 on:
   push:
-    branches: [base44-free-core]
+    branches: [main, base44-free-core]
   workflow_dispatch:
 
 permissions:
