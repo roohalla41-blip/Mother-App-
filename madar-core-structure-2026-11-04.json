@@ -1,31 +1,23 @@
 {
-  "exportedAt": "2026-11-04T04:05:31.964Z",
+  "exportedAt": "2026-11-08T07:20:00.000Z",
   "coreStructure": {
-    "label": "هسته برنامه مادر",
-    "note": "شش لایه از نمایش تا ذخیره‌سازی",
+    "label": "هسته مستقل برنامه مادر",
+    "note": "معماری مستقل با React و Vite در کلاینت و Supabase به‌عنوان سرویس داده و احراز هویت؛ بدون لایه اجرایی واسط",
     "children": [
       {
         "label": "۱. لایه نمایش (React + Vite)",
         "children": [
           {
-            "label": "App.jsx",
-            "note": "مسیریابی، AuthProvider، محافظت از مسیرها"
+            "label": "src/App.tsx",
+            "note": "مسیریابی صفحات عمومی، ورود، پشتیبانی و پنل سازنده"
           },
           {
-            "label": "Layout",
-            "note": "هدر، فوتر و بنر اعلان‌های مهم"
+            "label": "src/styles.css",
+            "note": "رابط واکنش‌گرا و راست‌چین فارسی"
           },
           {
-            "label": "صفحات عمومی",
-            "note": "خانه، برنامه‌ها، جزئیات، دانلود، آموزش، خبر، اعلان، سازندگان، درباره، پشتیبانی، حریم خصوصی، شرایط"
-          },
-          {
-            "label": "پنل سازنده",
-            "note": "BuilderPanel به همراه زیربخش‌های مدیریتی"
-          },
-          {
-            "label": "کتابخانه کامپوننت",
-            "note": "کارت‌ها، بج‌ها، فرم‌ها، دیالوگ‌ها، جستجو، اشتراک‌گذاری"
+            "label": "کامپوننت‌ها",
+            "note": "کارت برنامه، هدر، فوتر، فرم‌ها و اجزای رابط"
           }
         ]
       },
@@ -33,65 +25,33 @@
         "label": "۲. لایه داده کلاینت",
         "children": [
           {
-            "label": "React Query",
-            "note": "کش مشترک با اعتبار ۱۰ دقیقه برای کاهش مصرف اعتبار"
+            "label": "src/data.ts",
+            "note": "دریافت برنامه‌های منتشرشده و ثبت پیام پشتیبانی از طریق کلاینت مستقیم"
           },
           {
-            "label": "useApps / useReleases",
-            "note": "برنامه‌ها و نسخه‌های دانلود"
-          },
-          {
-            "label": "useBuilders / useCategories",
-            "note": "سازندگان و دسته‌بندی‌ها"
-          },
-          {
-            "label": "useTutorials / useNews / useAnnouncements",
-            "note": "محتوای سایت"
-          },
-          {
-            "label": "useComments / useSupportMessages",
-            "note": "نظرات و پیام‌های پشتیبانی"
-          },
-          {
-            "label": "useStorage",
-            "note": "آپلود، حذف و لینک امضاشده فایل"
-          },
-          {
-            "label": "useSupabaseStatus",
-            "note": "سلامت و مصرف منابع"
+            "label": "کش و وضعیت",
+            "note": "قابل افزودن در مرحله بعد؛ نسخه پایه از داده نمونه در حالت پیش‌نمایش استفاده می‌کند"
           }
         ]
       },
       {
-        "label": "۳. لایه سرور (Base44 Functions)",
+        "label": "۳. ارتباط با سرویس داده",
         "children": [
           {
-            "label": "supabaseCrud",
-            "note": "دروازه واحد CRUD، اعتبارسنجی دسترسی، مالکیت سازنده، پاک‌سازی آبشاری"
+            "label": "Supabase JavaScript Client",
+            "note": "اتصال مستقیم مرورگر با URL و کلید عمومی anon از متغیرهای محیطی"
           },
           {
-            "label": "supabaseStorage",
-            "note": "آپلود و حذف فایل و ساخت لینک امضاشده"
+            "label": "Supabase Auth",
+            "note": "ورود، نشست پایدار و خروج"
           },
           {
-            "label": "supabaseStatus",
-            "note": "محاسبه مصرف دیتابیس و فضای ذخیره‌سازی"
+            "label": "Supabase Postgres",
+            "note": "خواندن و نوشتن مجاز بر اساس سیاست‌های RLS موجود"
           },
           {
-            "label": "supabaseKeepAlive",
-            "note": "اجرای زمان‌بندی‌شده هر ۶ روز برای جلوگیری از خواب پروژه"
-          },
-          {
-            "label": "supabaseSetupDatabase",
-            "note": "ساخت جداول، انواع داده و سیاست‌ها"
-          },
-          {
-            "label": "supabaseTestConnection / supabaseTestCRUD",
-            "note": "تست اتصال و عملیات"
-          },
-          {
-            "label": "generateSitemap",
-            "note": "تولید نقشه سایت"
+            "label": "Supabase Storage",
+            "note": "bucket مورد انتظار madar-files؛ عملیات فایل پس از بررسی سیاست‌های دسترسی"
           }
         ]
       },
@@ -99,8 +59,16 @@
         "label": "۴. ماژول اشتراکی",
         "children": [
           {
-            "label": "supabaseFieldMap.ts",
-            "note": "نگاشت camelCase ↔ snake_case، ستون‌های مجاز و فیلتر خواندن عمومی"
+            "label": "src/supabase.ts",
+            "note": "ساخت کلاینت و خواندن تنظیمات عمومی"
+          },
+          {
+            "label": "src/auth.tsx",
+            "note": "مدیریت نشست و وضعیت ورود"
+          },
+          {
+            "label": "src/data.ts",
+            "note": "توابع دسترسی داده با خطایابی"
           }
         ]
       },
@@ -108,33 +76,33 @@
         "label": "۵. امنیت و دسترسی",
         "children": [
           {
-            "label": "AuthContext + ProtectedRoute",
-            "note": "ورود، نشست و محافظت از مسیر"
-          },
-          {
-            "label": "builderAuth",
-            "note": "کد دسترسی مخفی سازنده"
-          },
-          {
-            "label": "inAppBrowser",
-            "note": "تشخیص مرورگر داخلی و هدایت به مرورگر خارجی"
+            "label": "Supabase Auth",
+            "note": "احراز هویت مستقل"
           },
           {
             "label": "Supabase RLS",
-            "note": "خواندن عمومی فقط برای محتوای منتشرشده"
+            "note": "مرجع نهایی مجوز خواندن و نوشتن؛ باید پیش از فعال‌سازی عملیات مدیریتی بازبینی شود"
+          },
+          {
+            "label": "مفاتيح",
+            "note": "فقط کلید anon در کلاینت؛ هرگز service_role یا رمز محرمانه در کد مرورگر"
           }
         ]
       },
       {
-        "label": "۶. داده و ذخیره‌سازی",
+        "label": "۶. استقرار",
         "children": [
           {
-            "label": "Supabase Postgres",
-            "note": "11 جدول اصلی"
+            "label": "Vite build",
+            "note": "خروجی استاتیک dist قابل میزبانی روی GitHub Pages یا هر میزبان استاتیک"
           },
           {
-            "label": "Supabase Storage",
-            "note": "فایل‌های APK و تصاویر — bucket: madar-files"
+            "label": "متغیرهای محیطی",
+            "note": "VITE_SUPABASE_URL و VITE_SUPABASE_ANON_KEY"
+          },
+          {
+            "label": "کارهای زمان‌بندی‌شده",
+            "note": "در صورت نیاز با GitHub Actions Cron یا سرویس مستقل؛ در نسخه فعلی فعال نشده"
           }
         ]
       }
