@@ -3,26 +3,37 @@ on:
   push:
     branches: [base44-free-core]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: mother-preview
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout preview branch
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - name: Install dependencies
+        run: npm install
+      - name: Build React application
+        run: npm run build
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload built site
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
   deploy:
     environment:
       name: github-pages
